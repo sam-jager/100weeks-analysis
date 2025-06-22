@@ -54,8 +54,7 @@ for country in countries:
                 count = (survey_df[col] == 1).sum()
                 df_country.at[bench, col] = count / total if total > 0 else np.nan
 
-    display(df_country.loc[benchmark_rounds.keys(), binary_neg])
-    display(df_country.loc[benchmark_rounds.keys(), binary_pos])
+    display(df_country.loc[benchmark_rounds.keys(), binary_neg + binary_pos])
 
     for var in categorical:
         if var not in df.columns:
