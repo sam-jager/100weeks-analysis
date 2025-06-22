@@ -99,7 +99,7 @@ categorical = [
     "fuelcooking", "sourcelighting", "watersource", "Toiletfacility",
     "materialroof", "materialfloor", "materialwallsext",
     *[f"HHMschoolcompl_{n}" for n in range(1, 6)],
-    "schoolcompleted", "livestocknumbers_1",
+    "schoolcompleted",
     *[f"livestocknumbers_{i}" for i in [1, 13, 3, 4, 5, 6, 11, 8, 9, 7, 2, 10]],					
     "occupationmain"
 ]
