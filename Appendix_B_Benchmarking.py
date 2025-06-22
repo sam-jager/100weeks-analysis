@@ -1,3 +1,17 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import Counter
+
+def safe_sort_key(index):
+    def convert(val):
+        try:
+            return float(val)
+        except:
+            return 999  
+    return index.map(convert)
+
 df['Round'] = df['Round'].astype(str)
 df['Country'] = df['Country'].astype(str)
 
@@ -81,6 +95,7 @@ for country in countries:
             if r not in heatmap_data.columns:
                 heatmap_data[r] = 0
         heatmap_data = heatmap_data[round_order]
+        heatmap_data = heatmap_data.sort_index(key=safe_sort_key)
 
         plt.figure(figsize=(10, max(3, 0.4 * len(heatmap_data))))
         sns.heatmap(heatmap_data, annot=True, fmt=".1f", cmap='YlGnBu', cbar_kws={'label': 'Percentage (%)'})
@@ -124,6 +139,7 @@ for country in countries:
             if r not in heatmap_df.columns:
                 heatmap_df[r] = 0
         heatmap_df = heatmap_df[round_order]
+        heatmap_df = heatmap_df.sort_index(key=safe_sort_key)
 
         plt.figure(figsize=(10, max(3, 0.4 * len(heatmap_df))))
         sns.heatmap(heatmap_df, annot=True, fmt=".1f", cmap="YlGnBu", cbar_kws={'label': 'Percentage (%)'})
@@ -132,4 +148,5 @@ for country in countries:
         plt.ylabel("Value")
         plt.tight_layout()
         plt.show()
+
 
